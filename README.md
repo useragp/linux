@@ -20,8 +20,8 @@ Celem jest skonfigurowanie laptopa z systemem **Windows 11** tak, aby umożliwi�
 
 ### Problem: Partycja RAW i blokada zapisu
 Podczas przygotowania nośnika napotkano partycję o systemie plików **RAW** (nierozpoznawalny/uszkodzony). Próba formatowania systemowego zakończyła się błędem: *„Dysk jest zabezpieczony przed zapisem”*.
-![opis obrazka](linux/img/dyski_RAW.png)
-![opis obrazka](linux/img/zabezpieczenie_read_only.png)
+![Zarządzanie dyskami - RAW](/img/dyski_RAW.png)
+![Komunikat - zabezpieczenie przed zapisem](/img/zabezpieczenie_read_only.png)
 
 ### Rozwiązanie: Narzędzie DiskPart
 Do naprawy struktury logicznej pendrive'a wykorzystano konsolowe narzędzie **DiskPart**:
@@ -31,7 +31,7 @@ Do naprawy struktury logicznej pendrive'a wykorzystano konsolowe narzędzie **Di
     ```cmd
     list disk
     ```
-    ![opis obrazka](linux/img/list_disk.png)
+    ![listdisk - diskpart](/img/list_disk.png)
 
 3.  Wybór nośnika (w tym przypadku Dysk 1):
     ```cmd
@@ -41,18 +41,18 @@ Do naprawy struktury logicznej pendrive'a wykorzystano konsolowe narzędzie **Di
     ```cmd
     attributes disk
     ```
-    ![opis obrazka](linux/img/atrybuty.png)
+    ![atrybuty - diskpart](/img/atrybuty.png)
 
 5.  **Kluczowy krok:** Całkowite wyczyszczenie struktury partycji:
     ```cmd
     clean
     ```
     *Polecenie to usuwa tablicę partycji i resetuje dysk do stanu surowego, co jest najskuteczniejszą metodą przy błędach typu RAW.*
-    ![opis obrazka](linux/img/clean.png)
+    ![clean - diskpart](/img/clean.png)
 ### Tworzenie woluminu
 Po wyczyszczeniu dysku w narzędziu **Zarządzanie dyskami** utworzono nowy wolumin prosty i sformatowano go do systemu plików **FAT32**.
-![opis obrazka](linux/img/nowy_wolumin.png)
-![opis obrazka](linux/img/formatowanie_sukces.png)
+![nowy wolumin](/img/nowy_wolumin.png)
+![formatowanie - sukces](/img/formatowanie_sukces.png)
 
 ## 5. Tworzenie nośnika instalacyjnego (Rufus)
 Po przywróceniu sprawności pendrive'a, użyto programu **Rufus**:
@@ -60,6 +60,6 @@ Po przywróceniu sprawności pendrive'a, użyto programu **Rufus**:
 2. Wskazano obraz ISO Ubuntu.
 3. Wybrano schemat partycjonowania (MBR/GPT) zgodny z docelowym komputerem.
 4. Po zakończeniu procesu nośnik jest gotowy do instalacji systemu Linux.
-![opis obrazka](linux/img/rufus.png)
+![rufus](/img/rufus.png)
 ## 6. Wnioski
 Przygotowanie bootowalnego pendrive'a wymaga niekiedy zaawansowanej diagnostyki nośnika. Wykorzystanie narzędzi systemowych takich jak `diskpart` pozwala na naprawę błędów, z którymi nie radzi sobie standardowy interfejs graficzny Windows. Dzięki temu możliwa jest elastyczna praca w środowisku wielosystemowym
